@@ -1,0 +1,35 @@
+#!/bin/sh
+
+MAX_WIDTH=30
+
+UNAME_MACHINE=`uname -s`
+
+if [[ $UNAME_MACHINE -ne "Linux" ]]; then
+	echo "battery command only works on Linux."
+	exit 1
+fi
+
+if [ ! -d /sys/class/power_supply/BAT0 ]; then
+	echo "Battery not exists!"
+	exit 1
+fi
+
+PERCENTAGE=`cat /sys/class/power_supply/BAT0/capacity`
+
+echo $PERCENTAGE%
+
+cat /sys/class/power_supply/BAT0/status
+
+COUNT=`python3 -c "print(int($PERCENTAGE / (100 / $MAX_WIDTH)))"`
+
+printf "["
+for i in $(seq 1 $MAX_WIDTH)
+do
+	if [[ $i -le $COUNT ]]; then
+		printf "#"
+	else
+		printf "-"
+	fi
+done
+printf "]"
+echo ""

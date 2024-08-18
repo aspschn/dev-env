@@ -1,0 +1,18 @@
+UNAME=`uname -s`
+
+alias dfg='df --block-size=G'
+alias dfh='df -h'
+alias lsd='ls' # protect typing miss
+alias ls='ls --color=tty --time-style=long-iso'
+
+if [[ "$UNAME" == 'Darwin' ]]; then
+	alias ls='ls -G'
+fi
+
+alias chx='chmod +x'
+
+alias cpuinfo='sudo dmidecode --type Processor'
+
+if [ -x "$(command -v vim)" ]; then
+	alias vi='vim'
+fi
