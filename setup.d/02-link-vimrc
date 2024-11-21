@@ -1,0 +1,28 @@
+#!/bin/sh
+
+SCRIPT_TYPE="link"
+
+# 1 for already setup. 0 if not setup.
+_check() {
+    link_target=`readlink $HOME/.vimrc`
+    if [ "$link_target" == "dev-env/vimrc" ]; then
+        echo 1
+        return
+    fi
+
+    echo 0
+}
+
+_link() {
+    # Backup.
+    if [ -f "$HOME/.vimrc" ]; then
+        mv "$HOME/.vimrc" "$HOME/.vimrc.bak"
+    fi
+    # Link.
+    ln -s "dev-env/vimrc" "$HOME/.vimrc"
+
+    # Show.
+    ls -l "$HOME/.vimrc"
+}
+
+# vim: set ts=4 sw=4 expandtab:

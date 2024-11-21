@@ -1,0 +1,44 @@
+#!/bin/sh
+
+SCRIPT_TYPE="install"
+
+_check() {
+    if [ -d "$HOME/.oh-my-zsh" ]; then
+        echo 1
+    else
+        echo 0
+    fi
+}
+
+_install() {
+    echo "Installing oh-my-zsh ..."
+    # Check curl.
+    if command -v "curl" > /dev/null 2>&1; then
+        CURL_INSTALLED=1
+    fi
+    # Check wget.
+    if command -v "wget" > /dev/null 2>&1; then
+        WGET_INSTALLED=1
+    fi
+
+    if [ "$CURL_INSTALLED" -eq 1 ]; then
+        echo "curl found. Install by curl."
+        curl -fsSL "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
+    elif [ "WGET_INSTALLED" -eq 1 ]; then
+        echo "curl not found. wget found. Install by wget."
+        wget "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh" -O -
+    else
+        echo "The system could not find curl or wget. Unable to install."
+    fi
+}
+
+if [ "$1" == "--standalone" ]; then
+    installed=$(_check)
+    if [ "$installed" -eq 1 ]; then
+        echo "Already installed."
+        exit
+    fi
+    _install
+fi
+
+# vim: set ts=4 sw=4 expandtab:

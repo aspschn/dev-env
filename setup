@@ -1,0 +1,56 @@
+#!/bin/sh
+
+SETUP_DIR="./setup.d"
+
+yes_no() {
+    case "$1" in
+        y|Y|yes|Yes) echo "y"
+            ;;
+        *) echo "n"
+            ;;
+    esac
+}
+
+main() {
+    cat ASCII
+
+    # For each scripts.
+    scripts=($(ls "$SETUP_DIR"))
+    for script in "${scripts[@]}"; do
+        echo "------------------------------"
+        echo "Script name: $script"
+        source "$SETUP_DIR/$script"
+        # Check if already setup.
+        if [ $(_check) -eq 1 ]; then
+            echo "Already setup."
+            continue
+        else
+            echo "Install? [y/N] "
+            read confirm
+            confirm=$(yes_no $confirm)
+        fi
+        # If no, abort.
+        if [ "$confirm" == "n" ]; then
+            echo "Abort."
+            continue
+        fi
+        # Do as the script type.
+        echo "$SCRIPT_TYPE"
+        case "$SCRIPT_TYPE" in
+            install) _install
+                ;;
+            copy) _copy
+                ;;
+            link) _link
+                ;;
+            *) echo "Unknown script type: $SCRIPT_TYPE"
+                ;;
+        esac
+    done
+}
+
+if [ $# -eq 0 ]; then
+    main
+fi
+
+# vim: set ts=4 sw=4 expandtab:

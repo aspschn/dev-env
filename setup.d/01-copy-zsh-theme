@@ -1,0 +1,21 @@
+#!/bin/sh
+
+SCRIPT_TYPE="copy"
+
+# 1 for already setup. 0 if not setup.
+_check() {
+    link_target=`readlink $HOME/.vimrc`
+    if [ -f "$HOME/.oh-my-zsh/custom/themes/aspschn.zsh-theme" ]; then
+        echo 1
+        return
+    fi
+
+    echo 0
+}
+
+_copy() {
+    # Copy.
+    cp "$HOME/dev-env/misc/oh-my-zsh/themes/aspschn.zsh-theme" "$HOME/.oh-my-zsh/custom/themes/"
+}
+
+# vim: set ts=4 sw=4 expandtab:
