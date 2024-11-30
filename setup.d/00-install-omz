@@ -23,7 +23,7 @@ _install() {
 
     if [ "$CURL_INSTALLED" -eq 1 ]; then
         echo "curl found. Install by curl."
-        curl -fsSL "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     elif [ "WGET_INSTALLED" -eq 1 ]; then
         echo "curl not found. wget found. Install by wget."
         wget "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh" -O -
