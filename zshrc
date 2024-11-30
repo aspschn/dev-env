@@ -95,13 +95,13 @@ echo Version:       `zsh --version`
 
 #*-  Finding dev-environment -*#
 # Deprecated.
-'''
-if [ -d "$HOME/dev-env" ]; then
-    DEV_ENV=~/dev-env
-else
-    DEV_ENV=~
-fi
-'''
+# '''
+# if [ -d "$HOME/dev-env" ]; then
+#     DEV_ENV=~/dev-env
+# else
+#     DEV_ENV=~
+# fi
+# '''
 DEV_ENV=~/dev-env
 
 #*-          Aliases         -*#
