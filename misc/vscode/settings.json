@@ -1,0 +1,15 @@
+{
+    "window.zoomLevel": 0,
+    "editor.minimap.showSlider": "always",
+    "editor.renderWhitespace": "all",
+    "workbench.colorTheme": "Monokai",
+    "editor.wordWrap": "on",
+    "editor.wrappingIndent": "indent",
+    "editor.rulers": [
+        80
+    ],
+    "powermode.enableShake": false,
+    "rust-client.channel": "stable",
+    "rust-client.showStdErr": true,
+    "window.newWindowDimensions": "inherit"
+}
