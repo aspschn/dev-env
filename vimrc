@@ -136,6 +136,8 @@ command Ccomment :0put=MakeCHeaderComment()
 command Cexterncstart :execute "normal! i" . MakeCExternCStart()
 " Cexterncend: Make end extern C
 command Cexterncend :execute "normal! i" . MakeCExternCEnd()
+" Externc: Make start and end extern C pair
+command Externc :execute "normal! i" . MakeCExternCStart() . "" . MakeCExternCEnd()
 
 """"""""""""""""""""""""
 ""    Local Config
