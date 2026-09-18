@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rpm -qa --queryformat '%{SIZE}\t%{NAME}\n' | sort -n | numfmt --to=iec --field=1 --padding=10
