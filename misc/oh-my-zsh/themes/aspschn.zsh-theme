@@ -3,7 +3,7 @@
 # hashing hostname
 # hash algorithm which used in function is SDBM algorithm. the original source
 # from: http://www.cse.yorku.ca/~oz/hash.html
-name=`hostname`
+name=$HOST
 len=${#name}
 hsh=0
 for (( i=0; i<len; i++ )); do
